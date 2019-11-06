@@ -6,3 +6,26 @@
 .example-container > * {
   width: 100%;
 }
+
+.slide-in {
+  animation: slide-in 1s forwards;
+  -webkit-animation: slide-in 1s forwards;
+}
+  
+@keyframes slide-in {
+  0% { transform: translateX(-100%); }
+  20% { transform: translateX(-80%); }
+  40% { transform: translateX(-60%); }
+  60% { transform: translateX(-40%); }
+  80% { transform: translateX(-20%); }
+  100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in {
+  0% { -webkit-transform: translateX(-100%); }
+  20% { -webkit-transform: translateX(-80%); }
+  40% { -webkit-transform: translateX(-60%); }
+  60% { -webkit-transform: translateX(-40%); }
+  80% { -webkit-transform: translateX(-20%); }
+  100% { -webkit-transform: translateX(0%); }
+}
