@@ -7,10 +7,13 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { UserProfilesComponent } from './components/user-profiles/user-profiles.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { HomeComponent } from './components/home/home.component';
+import { UserProfileService } from './services/user.profile.service';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,10 @@ import { HomeComponent } from './components/home/home.component';
     MatListModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UserProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

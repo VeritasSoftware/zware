@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
+  {path: 'profile/:id', component: UserProfileComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
