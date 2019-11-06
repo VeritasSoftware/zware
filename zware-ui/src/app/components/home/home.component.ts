@@ -9,16 +9,14 @@ import { UserProfileService } from '../../services/user.profile.service';
 })
 export class HomeComponent implements OnInit {
 
-  profileSelected: UserProfile;
+  userId: number;
   
-  constructor(private service: UserProfileService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  getProfile(userId: string) {
-    this.service.getProfile(+userId).subscribe(x => {
-      this.profileSelected = x;
-    });
+  setUserId(userId: string) {
+    this.userId = +userId;
   }
 }
