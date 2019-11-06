@@ -1,3 +1,6 @@
-<p>
-  user-profiles works!
-</p>
+<mat-nav-list>
+    <a mat-list-item href="..." *ngFor="let link of links"> {{ link }} </a>
+    <button mat-list-item (click)="save()"> Pepper </button>
+    <button mat-list-item (click)="undo()"> Salt </button>
+    <button mat-list-item (click)="undo()"> Paprika </button>
+ </mat-nav-list>

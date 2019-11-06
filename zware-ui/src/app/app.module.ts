@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { MatListModule } from '@angular/material/list';
 import { AppComponent } from './app.component';
 import { UserProfilesComponent } from './components/user-profiles/user-profiles.component';
 
@@ -12,7 +13,8 @@ import { UserProfilesComponent } from './components/user-profiles/user-profiles.
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
