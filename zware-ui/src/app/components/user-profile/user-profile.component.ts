@@ -20,6 +20,8 @@ export class UserProfileComponent implements OnInit {
 
   profile: UserProfile = new UserProfile();
 
+  get f() { return this.profileForm.controls; }
+
   constructor(private service: UserProfileService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -60,7 +62,9 @@ export class UserProfileComponent implements OnInit {
 
     this.service.setProfile(this.profile).subscribe(x => {
       this.submitted = false;
+      alert('Profile saved successfully');
       this.profileModified.emit();      
+
     });    
   }
 }
