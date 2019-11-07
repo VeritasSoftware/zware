@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
@@ -10,6 +10,17 @@ import { UserProfile } from '../models/models';
 })
 export class UserProfileService {
   usersUrl = `${environment.apiUrl}api/${environment.scopeKey}/profiles`;
+  // httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type':  'application/json'
+  //   })
+  // };
+
+  httpOptions = {
+    headers: {
+      'Content-Type':  'application/json'
+    }
+  };
 
   constructor(private _http: HttpClient) { }
 
@@ -25,7 +36,14 @@ export class UserProfileService {
 
   setProfile(userProfile: UserProfile): Observable<UserProfile> {
     var url = `${this.usersUrl}`
-    return this._http.post<UserProfile>(url, userProfile);
+    if (userProfile.userId > 0)
+    {
+      url = `${url}/${userProfile.userId}`
+      return this._http.put<UserProfile>(url, userProfile, this.httpOptions);
+    }
+    else {
+      return this._http.post<UserProfile>(url, userProfile, this.httpOptions);
+    }    
   }
 
 }

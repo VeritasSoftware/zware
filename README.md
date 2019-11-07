@@ -3,7 +3,7 @@
 # Angular 7 front end UI
 
 *   uses Angular Materials like List, Input, Button
-*   bootstrapped
+*   responsive using angular bootstrap
 
 Screenshot:
 

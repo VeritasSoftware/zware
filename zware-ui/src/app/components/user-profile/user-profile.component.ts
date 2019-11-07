@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, SimpleChanges, EventEmitter } from '@angular/core';
 import { UserProfile } from '../../models/models';
 import { UserProfileService } from '../../services/user.profile.service';
 
@@ -11,8 +11,10 @@ export class UserProfileComponent implements OnInit {
 
   @Input()
   userId: number;
-  
-  profile: UserProfile;
+  @Output()
+  profileModified = new EventEmitter();
+
+  profile: UserProfile = new UserProfile();
 
   constructor(private service: UserProfileService) { }
 
@@ -30,5 +32,15 @@ export class UserProfileComponent implements OnInit {
 
     if (changes.userId.currentValue)
       this.getProfile(changes.userId.currentValue);
+  }
+
+  create() {
+    this.profile = new UserProfile();
+  }
+
+  save() {
+    this.service.setProfile(this.profile).subscribe(x => {
+      this.profileModified.emit();
+    });    
   }
 }

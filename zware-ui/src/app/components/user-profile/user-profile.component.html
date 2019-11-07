@@ -1,31 +1,32 @@
  <div class="example-container slide-in">
     <mat-form-field>
-        <input matInput placeholder="Email" [value]="profile?.email" />
+        <input matInput placeholder="Email" [(ngModel)]="profile.email" />
       </mat-form-field>
     
       <mat-form-field>
-        <input matInput placeholder="First name" [value]="profile?.firstName" />
+        <input matInput placeholder="First name" [(ngModel)]="profile.firstName" />
       </mat-form-field>
     
       <mat-form-field>
-        <input matInput placeholder="Last name" [value]="profile?.lastName" />
+        <input matInput placeholder="Last name" [(ngModel)]="profile.lastName" />
       </mat-form-field>
     
       <mat-form-field>
-        <input matInput placeholder="Display name" [value]="profile?.displayName" />
+        <input matInput placeholder="Display name" [(ngModel)]="profile.displayName" />
       </mat-form-field>
     
       <mat-form-field>
-        <input matInput placeholder="Description" [value]="profile?.description" />
+        <input matInput placeholder="Description" [(ngModel)]="profile.description" />
       </mat-form-field>
     
       <mat-form-field>
-        <input matInput placeholder="Department" [value]="profile?.department" />
+        <input matInput placeholder="Department" [(ngModel)]="profile.department" />
       </mat-form-field>
     
       <mat-form-field>
-        <input matInput placeholder="Team" [value]="profile?.team" />
+        <input matInput placeholder="Team" [(ngModel)]="profile.team" />
       </mat-form-field>            
  </div>
- <button mat-raised-button color="primary">Save</button>
+ <button mat-raised-button color="primary" (click)="save()" >Save</button>&nbsp;&nbsp;
+ <button mat-raised-button color="primary" (click)="create()" >New</button>
  
