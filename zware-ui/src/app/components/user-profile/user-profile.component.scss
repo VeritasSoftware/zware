@@ -7,6 +7,10 @@
   width: 100%;
 }
 
+.full-width {
+  width: 100!important;
+}
+
 .slide-in {
   animation: slide-in 1s forwards;
   -webkit-animation: slide-in 1s forwards;

@@ -1,31 +1,61 @@
- <div class="example-container slide-in">
-    <mat-form-field>
-        <input matInput placeholder="Email" [(ngModel)]="profile.email" />
+ <div class="example-container slide-in full-width">
+    <form [formGroup]="profileForm" class="full-width">
+        <div class="form-group full-width">
+          <mat-form-field style="width: 100%">                
+              <input matInput placeholder="Email" formControlName="email" [(ngModel)]="profile.email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+              
+          </mat-form-field>
+      </div>
+      <div class="form-group full-width">        
+        <mat-form-field style="width: 100%">          
+            <input matInput placeholder="First name" formControlName="firstName" [(ngModel)]="profile.firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            </div>      
+          
+        </mat-form-field>
+    </div>
+
+    <div class="form-group full-width">
+      <mat-form-field style="width: 100%">      
+          <input matInput placeholder="Last name" formControlName="lastName" [(ngModel)]="profile.lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+              <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+          </div>            
       </mat-form-field>
+    </div>
     
-      <mat-form-field>
-        <input matInput placeholder="First name" [(ngModel)]="profile.firstName" />
+    <div class="form-group full-width">
+      <mat-form-field style="width: 100%">      
+          <input matInput placeholder="Display name" formControlName="displayName" [(ngModel)]="profile.displayName" [ngClass]="{ 'is-invalid': submitted && f.displayName.errors }" />
+          <div *ngIf="submitted && f.displayName.errors" class="invalid-feedback">
+              <div *ngIf="f.displayName.errors.required">Display Name is required</div>
+          </div>            
       </mat-form-field>
+    </div>
     
-      <mat-form-field>
-        <input matInput placeholder="Last name" [(ngModel)]="profile.lastName" />
+    <div class="form-group full-width">
+      <mat-form-field style="width: 100%">
+        <input matInput placeholder="Description" formControlName="desc" [(ngModel)]="profile.description" />
       </mat-form-field>
-    
-      <mat-form-field>
-        <input matInput placeholder="Display name" [(ngModel)]="profile.displayName" />
+    </div>
+
+    <div class="form-group full-width">
+      <mat-form-field style="width: 100%">
+        <input matInput placeholder="Department" formControlName="dept" [(ngModel)]="profile.department" />
       </mat-form-field>
-    
-      <mat-form-field>
-        <input matInput placeholder="Description" [(ngModel)]="profile.description" />
-      </mat-form-field>
-    
-      <mat-form-field>
-        <input matInput placeholder="Department" [(ngModel)]="profile.department" />
-      </mat-form-field>
-    
-      <mat-form-field>
-        <input matInput placeholder="Team" [(ngModel)]="profile.team" />
+    </div>
+
+    <div class="form-group full-width">
+      <mat-form-field style="width: 100%">
+        <input matInput placeholder="Team" formControlName="team" [(ngModel)]="profile.team" />
       </mat-form-field>            
+    </div>      
+    </form>
  </div>
  <button mat-raised-button color="primary" (click)="save()" >Save</button>&nbsp;&nbsp;
  <button mat-raised-button color="primary" (click)="create()" >New</button>

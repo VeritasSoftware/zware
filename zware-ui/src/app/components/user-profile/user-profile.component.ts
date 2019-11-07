@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, SimpleChanges, EventEmitter } from '@angular/core';
 import { UserProfile } from '../../models/models';
 import { UserProfileService } from '../../services/user.profile.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,6 +10,9 @@ import { UserProfileService } from '../../services/user.profile.service';
 })
 export class UserProfileComponent implements OnInit {
 
+  profileForm: FormGroup;
+  submitted = false;
+
   @Input()
   userId: number;
   @Output()
@@ -16,10 +20,18 @@ export class UserProfileComponent implements OnInit {
 
   profile: UserProfile = new UserProfile();
 
-  constructor(private service: UserProfileService) { }
+  constructor(private service: UserProfileService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    
+    this.profileForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      displayName: ['', [Validators.required]],
+      desc: [''],
+      dept: [''],
+      team: ['']
+    });
   }
   
   getProfile(userId: number) {
@@ -39,8 +51,16 @@ export class UserProfileComponent implements OnInit {
   }
 
   save() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.profileForm.invalid) {
+        return;
+    }
+
     this.service.setProfile(this.profile).subscribe(x => {
-      this.profileModified.emit();
+      this.submitted = false;
+      this.profileModified.emit();      
     });    
   }
 }
