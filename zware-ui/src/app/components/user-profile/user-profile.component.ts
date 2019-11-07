@@ -17,6 +17,8 @@ export class UserProfileComponent implements OnInit {
   userId: number;
   @Output()
   profileModified = new EventEmitter();
+  @Output()
+  profileCreate = new EventEmitter();
 
   profile: UserProfile = new UserProfile();
 
@@ -33,7 +35,7 @@ export class UserProfileComponent implements OnInit {
       desc: [''],
       dept: [''],
       team: ['']
-    });
+    });    
   }
   
   getProfile(userId: number) {
@@ -49,7 +51,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   create() {
-    this.profile = new UserProfile();
+    this.profile = new UserProfile(); 
+    this.profileCreate.emit();
   }
 
   save() {
@@ -62,9 +65,8 @@ export class UserProfileComponent implements OnInit {
 
     this.service.setProfile(this.profile).subscribe(x => {
       this.submitted = false;
-      alert('Profile saved successfully');
+      alert('Profile saved successfully!');
       this.profileModified.emit();      
-
     });    
   }
 }

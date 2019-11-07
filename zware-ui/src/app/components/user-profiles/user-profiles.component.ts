@@ -14,6 +14,9 @@ export class UserProfilesComponent implements OnInit {
   @Input()
   refresh: Date;
 
+  @Input()
+  selectedUserId: number;
+
   @Output() 
   profileSelected = new EventEmitter<string>();
 
@@ -25,18 +28,26 @@ export class UserProfilesComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    if (changes.refresh.currentValue) {
-      this.getProfiles();
-    }      
+    this.getProfiles();
+
+    // if (changes.refresh.currentValue) {
+      
+    // }      
   }  
 
   getProfiles() {
-    this.service.getProfiles().subscribe(x => {
-      this.profiles = x;
+    this.service.getProfiles().subscribe((x:UserProfile[]) => {      
+      x.forEach(profile => {
+        if (profile.userId == this.selectedUserId) {
+          profile.isSelected = true;
+        }
+      });
+      this.profiles = x;            
     });
   }
 
   open(userId: string) {
     this.profileSelected.emit(userId);
+    this.getProfiles();
   }
 }

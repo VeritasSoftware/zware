@@ -7,6 +7,7 @@ export class UserProfile {
     description: string;
     department: string;
     team: string;
+    isSelected: boolean;
 }
 
 export class UserProfiles {

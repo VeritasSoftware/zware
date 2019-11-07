@@ -1,10 +1,18 @@
 <div class="container">
     <div class="row">
       <div class="col-md-8">
-          <app-user-profile [userId]="userId" (profileModified)="refreshList()" ></app-user-profile>
+          <app-user-profile 
+                [userId]="userId" 
+                (profileCreate)="userId = 0" 
+                (profileModified)="refreshList()">
+          </app-user-profile>
       </div>
       <div class="col-md-4">
-          <app-user-profiles #list (profileSelected)="setUserId($event)" [refresh]="refresh"></app-user-profiles>
+          <app-user-profiles 
+                [selectedUserId]="userId" 
+                (profileSelected)="setUserId($event)" 
+                [refresh]="refresh">
+          </app-user-profiles>
       </div>
     </div>
 </div>
