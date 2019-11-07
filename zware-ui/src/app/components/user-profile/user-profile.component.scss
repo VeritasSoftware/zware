@@ -11,6 +11,10 @@
   width: 100!important;
 }
 
+.invalid-feedback {
+  color: red;  
+}
+
 .slide-in {
   animation: slide-in 1s forwards;
   -webkit-animation: slide-in 1s forwards;
